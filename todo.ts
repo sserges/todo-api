@@ -61,4 +61,21 @@ export class TodoElement extends Drash.Http.Resource {
     this.response.body = "DELETED OK";
     return this.response;
   }
+
+  public PUT() {
+    const id = parseInt(this.request.getPathParam("id"));
+    const todo = todos.find((t) => t.id === id);
+
+    if (!todo) {
+      throw new Drash.Exceptions.HttpException(
+        404,
+        `Todo with id ${id} not found`,
+      );
+    }
+
+    todo.completed = this.request.getBodyParam("completed");
+
+    this.response.body = todo;
+    return this.response;
+  }
 }
