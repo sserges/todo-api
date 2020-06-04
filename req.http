@@ -1,1 +1,9 @@
 GET http://localhost:1337/todos
+
+###
+
+GET http://localhost:1337/todos/1
+
+###
+
+GET http://localhost:1337/todos/15555
