@@ -25,6 +25,19 @@ export class TodoList extends Drash.Http.Resource {
     this.response.body = todos;
     return this.response;
   }
+
+  public POST() {
+    const todo = {
+      id: Math.floor(Math.random() * Math.floor(321321)),
+      title: this.request.getBodyParam("title"),
+      completed: this.request.getBodyParam("completed"),
+    };
+
+    todos.push(todo);
+
+    this.response.body = todo;
+    return this.response;
+  }
 }
 
 export class TodoElement extends Drash.Http.Resource {
