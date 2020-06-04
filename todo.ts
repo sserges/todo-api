@@ -31,8 +31,8 @@ export class TodoElement extends Drash.Http.Resource {
   static paths = ["/todos/:id"];
 
   public GET() {
-    const id = this.request.getPathParam("id");
-    const todo = todos.find((t) => t.id == id);
+    const id = parseInt(this.request.getPathParam("id"));
+    const todo = todos.find((t) => t.id === id);
 
     if (!todo) {
       throw new Drash.Exceptions.HttpException(
@@ -41,6 +41,24 @@ export class TodoElement extends Drash.Http.Resource {
       );
     }
     this.response.body = todo;
+    return this.response;
+  }
+
+  public DELETE() {
+    const id = parseInt(this.request.getPathParam("id"));
+    const todo = todos.find((t) => t.id === id);
+
+    if (!todo) {
+      throw new Drash.Exceptions.HttpException(
+        404,
+        `Todo with id ${id} not found`,
+      );
+    }
+
+    todos = todos.filter((t) => t.id !== id);
+
+    this.response.status_code = 204;
+    this.response.body = "DELETED OK";
     return this.response;
   }
 }

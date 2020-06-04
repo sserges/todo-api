@@ -7,3 +7,24 @@ GET http://localhost:1337/todos/1
 ###
 
 GET http://localhost:1337/todos/15555
+
+###
+
+DELETE  http://localhost:1337/todos/15555
+
+###
+
+POST   http://localhost:1337/todos
+Content-Type: application/json
+{
+    "completed": false,
+    "title": "manger"
+}
+
+###
+
+PUT   http://localhost:1337/todos/2
+Content-Type: application/json
+{
+    "completed": true
+}
